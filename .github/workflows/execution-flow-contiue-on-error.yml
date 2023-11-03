@@ -34,9 +34,10 @@ jobs:
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         # Added if condition to install npm dependencies if we miss cache hit.
-        continue-on-error: true
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Test code
+        continue-on-error: true
         id: test-status
         run: npm run test
       - name: Upload test report
