@@ -75,7 +75,7 @@ jobs:
     uses: ./.github/workflow/reusable.yml
   report:
     needs: [lint, deploy]
-    if: failure()
+    if: failure() 
     runs-on: ubuntu-latest
     steps:
       - name: Output Information
